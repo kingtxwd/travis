@@ -5,8 +5,8 @@ language: java
 
 # before_script
 
-# script
-# git diff D...H
+script:
+python test.py
 
 # aftersuccess or afterfailure
 
