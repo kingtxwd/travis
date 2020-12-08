@@ -1,22 +1,22 @@
 language: java
-before_install
+# before_install
 
-install
+# install
 
-before_script
+# before_script
 
-script
-git diff D...H
+# script
+# git diff D...H
 
-aftersuccess or afterfailure
+# aftersuccess or afterfailure
 
-[OPTIONAL] before_deploy
-mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-[OPTIONAL] deploy
-"wget" or "curl" to download a specific project SHA as a zip file, 
-run "unzip" to get source, 
-run "mvn install -DskipTests -am -pl module" to build, and 
-"mvn edu.illinois:nondex:1.1.2:nondex -Dtest=..." to run the test)
-[OPTIONAL] after_deploy
+# [OPTIONAL] before_deploy
+# # mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+# [OPTIONAL] deploy
+# # "wget" or "curl" to download a specific project SHA as a zip file, 
+# # run "unzip" to get source, 
+# # run "mvn install -DskipTests -am -pl module" to build, and 
+# # "mvn edu.illinois:nondex:1.1.2:nondex -Dtest=..." to run the test)
+# [OPTIONAL] after_deploy
 
-after_script
+# after_script
