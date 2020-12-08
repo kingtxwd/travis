@@ -6,7 +6,7 @@ language: java
 # before_script
 
 script:
-python test.py
+- python test.py
 
 # aftersuccess or afterfailure
 
