@@ -1,3 +1,4 @@
 import sys
 print("Hello World!")
-sys.exit(1)
+exit(2)
+#sys.exit(1)
