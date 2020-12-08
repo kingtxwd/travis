@@ -1,2 +1,3 @@
+import sys
 print("Hello World!")
-exit(1)
+sys.exit(1)
