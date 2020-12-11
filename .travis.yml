@@ -20,3 +20,4 @@ script:
 # [OPTIONAL] after_deploy
 
 # after_script
+# edu.illinois:nondex-maven-plugin:1.1.2:nondex
