@@ -36,6 +36,7 @@ def assert_content(file_name):
         reader = csv.reader(csvfile, delimiter=',')
         i = 0     
         downloaded = {}
+        flag = False
         for row in reader:
             if i != 0:
                 j = 0
@@ -55,12 +56,16 @@ def assert_content(file_name):
                 return_value = os.system("mvn -q edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=" + testname + " -f " + dir  + "/pom.xml")
                 os.system("cd ../../")
                 if return_value == 0 :
-                    return project + " of " + sha + " on " + testname + "is not flaky"
+                    print( project + " of " + sha + " on " + testname + "is not flaky" )
+                    flag = True
             i= i + 1
-    return "All tests are flaky"
+    return flag
 
 result = assert_format("FlakyTestCharacteristics.csv") 
 if result == "True":
-    print(assert_content("FlakyTestCharacteristics.csv"))
+    if assert_content("FlakyTestCharacteristics.csv") :
+        print("Some tests are not flaky.")
+    else :
+        print("All Tests are flaky.")
 else:
     print(result)
