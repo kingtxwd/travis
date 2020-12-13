@@ -1,5 +1,7 @@
 Project URL,SHA Detected,Module Path,Fully-Qualified Test Name (packageName.ClassName.methodName),Category,Status,PR Link,Days to Complete PR,Debugging Information
+https://github.com/alibaba/fastjson,e05e9c5e4be580691cc55a59f3256595393203a1,.,com.alibaba.json.bvt.issue_1100.Issue1177_2.test_for_issue,ID,Accepted,https://github.com/alibaba/fastjson/pull/3042,15,
 https://github.com/Activiti/Activiti,b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4,activiti-engine,org.activiti.engine.test.bpmn.async.AsyncTaskTest.testAsyncEndEvent,UD,,,,
 https://github.com/Activiti/Activiti,b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4,activiti-engine,org.activiti.engine.test.bpmn.event.error.ErrorEventSubProcessTest.testErrorCodeTakesPrecedence,UD,,,,
 https://github.com/Activiti/Activiti,b11f757a48600e53aaf3fcb7a3ba1ece6c463cb4,activiti-engine,org.activiti.engine.test.bpmn.gateway.EventBasedGatewayTest.testCatchTimerCancelsSignal,,,,,
 https://github.com/alibaba/fastjson,e05e9c5e4be580691cc55a59f3256595393203a1,.,com.alibaba.json.bvt.guava.HashMultimapTest.test_for_multimap,ID,Opened,https://github.com/MengdiGao/fastjson/commit/aa5385637df25ca9dab0051ea57a00b38649d34a,,
+https://github.com/apache/hadoop,cc2babc1f75c93bf89a8f10da525f944c15d02ea,hadoop-hdfs-project/hadoop-hdfs-httpfs,org.apache.hadoop.fs.http.server.TestHttpFSServer.testMkdirWithUnmaskedPermissions,OD,,,,
