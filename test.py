@@ -13,25 +13,22 @@ def assert_format(file_name):
                 for cell in row:
                     if j == 0 :
                         if not cell.startswith("https://github.com/"): 
-                            return False
-                    if j == 3:
-
+                            return "Project URL Error: Not a github opensource project"
+                    if j == 3 :
                         if "#" in cell :
- 
-                            return False
+                            return "TestName error: use '.' instead of'#' before methodName"
                     if j == 4:
                         
                         if not(cell in ["", "UD", "NI", "NDOI", "NDOD", "NOD", "ID", "OD-Vic", "OD-Brit", "OD"]):
-                            return False
+                            return "Category Error: not a valid category type"
                     if j == 5:
                         if not (cell in ["", "Blank", "Opened", "Accepted", "InspiredAFix", "DeveloperFixed", "Deleted", "Rejected", "Skipped"]) :
-                            return False
+                            return "Status Error: not a valid status type"
                     j = j + 1
                 if j > 10:
-                    print("number")
-                    return False
+                    return ("Format error: might include more info than needed")
             i= i + 1
-    return True
+    return "True"
 
 def assert_content(file_name):
     with open(file_name,'r') as csvfile:
@@ -46,17 +43,6 @@ def assert_content(file_name):
                 module = row [2]
                 testname = row[3]
                 projectname = row[0].split('/')[-1]
-                """
-                for cell in row:
-                    if j == 0 :
-                        project = cell
-                    if j == 1 :
-                        sha = cell
-                    if j == 2 :
-                        module = cell
-                    if j == 3 : 
-                    j = j + 1
-                """
                 key = project + sha
                 dir = sha + "/" + projectname + "-" + sha
                 if key not in downloaded:
@@ -64,23 +50,16 @@ def assert_content(file_name):
                     zip = os.system(command)
                     file = os.system("unzip -o "+sha+".zip -d "+sha+"/")
                     downloaded[key] = 1
-                    # with open(dir + "/pom.xml") as f:
-                    #     s = f.read()
-                    #     if "</plugins>" not in s:
-                    #         pass
-                    #     else:
-                    #         with open(dir + "/pom.xml", 'w') as f:
-                    #             s = s.replace("</plugins>", " <plugin> <groupId>edu.illinois</groupId> <artifactId>nondex-maven-plugin</artifactId> <version>1.1.2</version>  </plugin>  </plugins>")
-                    #             f.write(s)
                 os.system("pwd && cd " + dir + " && mvn install -DskipTests -am " + ("-pl " + module if module != "" else ""))
-                return_value = os.system("mvn edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=" + testname + " -f " + dir  + "/pom.xml")
+                return_value = os.system("mvn edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=" + testname)
                 os.system("cd ../../")
-                print(return_value)
+                if return_value == 0 :
+                    return project + " of " + sha + " on " + testname + "is not flaky"
             i= i + 1
-    return True
+    return "All tests are flaky"
 
-if assert_format("FlakyTestCharacteristics.csv"):
-    if assert_content("FlakyTestCharacteristics.csv"):
-        print(True)
+result = assert_format("FlakyTestCharacteristics.csv") 
+if result == "True":
+    print(assert_content("FlakyTestCharacteristics.csv"))
 else:
-    print(False)
+    print(result)
