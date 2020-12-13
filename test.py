@@ -65,7 +65,9 @@ result = assert_format("FlakyTestCharacteristics.csv")
 if result == "True":
     if assert_content("FlakyTestCharacteristics.csv") :
         print("Some tests are not flaky.")
+        exit(1)
     else :
         print("All Tests are flaky.")
 else:
     print(result)
+    exit(1)
