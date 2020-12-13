@@ -52,7 +52,7 @@ def assert_content(file_name):
                     file = os.system("unzip -qq -o "+sha+".zip -d "+sha+"/")
                     downloaded[key] = 1
                 os.system("pwd && cd " + dir + " && mvn -q install -DskipTests -am " + ("-pl " + module if module != "" else ""))
-                return_value = os.system("mvn -q edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=" + testname)
+                return_value = os.system("mvn -q edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=" + testname + " -f " + dir  + "/pom.xml")
                 os.system("cd ../../")
                 if return_value == 0 :
                     return project + " of " + sha + " on " + testname + "is not flaky"
