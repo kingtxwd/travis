@@ -3,6 +3,7 @@ import sys
 import csv
 import os
 
+
 def assert_format(file_name):
     with open(file_name,'r') as csvfile:
         reader = csv.reader(csvfile, delimiter=',')
@@ -46,12 +47,12 @@ def assert_content(file_name):
                 key = project + sha
                 dir = sha + "/" + projectname + "-" + sha
                 if key not in downloaded:
-                    command = "wget -N "+ project + "/archive/" + sha + ".zip -O  "+sha+".zip"
+                    command = "wget -q -N "+ project + "/archive/" + sha + ".zip -O  "+sha+".zip"
                     zip = os.system(command)
-                    file = os.system("unzip -o "+sha+".zip -d "+sha+"/")
+                    file = os.system("unzip -qq -o "+sha+".zip -d "+sha+"/")
                     downloaded[key] = 1
-                os.system("pwd && cd " + dir + " && mvn install -DskipTests -am " + ("-pl " + module if module != "" else ""))
-                return_value = os.system("mvn edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=" + testname)
+                os.system("pwd && cd " + dir + " && mvn -q install -DskipTests -am " + ("-pl " + module if module != "" else ""))
+                return_value = os.system("mvn -q edu.illinois:nondex-maven-plugin:1.1.2:nondex -Dtest=" + testname)
                 os.system("cd ../../")
                 if return_value == 0 :
                     return project + " of " + sha + " on " + testname + "is not flaky"
